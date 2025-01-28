@@ -3,7 +3,7 @@ package that.choppy.cardmod;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.food.FoodProperties;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -54,7 +54,7 @@ public class CardMod {
             () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties().setId(ITEMS.key("example_block")))
     );
 
-    // Creates a new food item with the id "cardmod:example_id", nutrition 1 and saturation 2
+
     public static final RegistryObject<Item> BASE_PACK = ITEMS.register("base_pack",
             () -> new Item(new Item.Properties()
                     .setId(ITEMS.key("base_pack"))
@@ -66,14 +66,19 @@ public class CardMod {
             )
     );
 
-    // Creates a creative tab with the id "cardmod:example_tab" for the example item, that is placed after the combat tab
-    public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("choppy_cards", () -> CreativeModeTab.builder()
-            .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> BASE_PACK.get().getDefaultInstance())
+    // Register the creative tab
+    public static final RegistryObject<CreativeModeTab> CHOPPY_CARDS_TAB = CREATIVE_MODE_TABS.register("choppy_cards", () -> CreativeModeTab.builder()
+            .withTabsBefore(CreativeModeTabs.COMBAT) // Place the tab before the Combat tab
+            .icon(() -> BASE_PACK.get().getDefaultInstance()) // Set the icon for the tab
+            .title(Component.translatable("Choppy Cards")) // Set the display name for the tab
             .displayItems((parameters, output) -> {
-                output.accept(BASE_PACK.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
+                // Add your custom items to the tab
+                output.accept(BASE_PACK.get());
                 output.accept(BASE_CARD.get());
-            }).build());
+            })
+            .build());
+
+
 
     public CardMod(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
@@ -105,7 +110,7 @@ public class CardMod {
         if (Config.logDirtBlock)
             LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
 
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
+        LOGGER.info("{}{}", Config.magicNumberIntroduction, Config.magicNumber);
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }

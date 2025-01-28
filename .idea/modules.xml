@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Cardmod.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Cardmod.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Cardmod.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Cardmod.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ChoppyCards.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ChoppyCards.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ChoppyCards.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ChoppyCards.test.iml" />
     </modules>
   </component>
 </project>
