@@ -55,24 +55,24 @@ public class CardMod {
     );
 
     // Creates a new food item with the id "cardmod:example_id", nutrition 1 and saturation 2
-    public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item",
+    public static final RegistryObject<Item> BASE_PACK = ITEMS.register("base_pack",
             () -> new Item(new Item.Properties()
-                    .setId(ITEMS.key("example_item"))
-                    .food(new FoodProperties.Builder()
-                            .alwaysEdible()
-                            .nutrition(1)
-                            .saturationModifier(2f)
-                            .build()
-                    )
+                    .setId(ITEMS.key("base_pack"))
+            )
+    );
+    public static final RegistryObject<Item> BASE_CARD = ITEMS.register("base_card",
+            () -> new Item(new Item.Properties()
+                    .setId(ITEMS.key("base_card"))
             )
     );
 
     // Creates a creative tab with the id "cardmod:example_tab" for the example item, that is placed after the combat tab
-    public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("choppy_cards", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
+            .icon(() -> BASE_PACK.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
+                output.accept(BASE_PACK.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
+                output.accept(BASE_CARD.get());
             }).build());
 
     public CardMod(FMLJavaModLoadingContext context) {
