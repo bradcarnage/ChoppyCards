@@ -1,0 +1,9 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+license="All rights reserved"
+[[mods]]
+modId="cardmod"
+version="1.0"
+displayName="Choppy Cards"
+description="A mod that adds trading cards to Minecraft."
+authors="ChoppyT,bradcarnage"
